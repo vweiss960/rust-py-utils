@@ -19,3 +19,25 @@ pub fn print(args: &[&dyn std::fmt::Display]) {
     }
     println!();
 }
+
+/// Trait for Python-like split method
+pub trait PySplit {
+    fn pysplit(&self, delimiter: &str) -> Vec<String>;
+}
+
+impl PySplit for String {
+    fn pysplit(&self, delimiter: &str) -> Vec<String> {
+        self.split(delimiter)
+            .map(|s| s.to_string())
+            .collect()
+    }
+}
+
+impl PySplit for &str {
+    fn pysplit(&self, delimiter: &str) -> Vec<String> {
+        self.split(delimiter)
+            .map(|s| s.to_string())
+            .collect()
+    }
+}
+
