@@ -13,7 +13,7 @@ pub fn input(prompt: &str) -> String {
 
 /// Python-like print macro for multiple arguments
 #[macro_export]
-macro_rules! print {
+macro_rules! pyprint {
     () => {
         ::std::println!();
     };
