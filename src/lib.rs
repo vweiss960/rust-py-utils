@@ -18,36 +18,12 @@ macro_rules! pyprint {
         ::std::println!();
     };
     ($arg:expr) => {
-        match (&$arg,) {
-            (v,) if ::std::any::type_name_of_val(v).contains("Vec") ||
-                    ::std::any::type_name_of_val(v).contains("[") => {
-                ::std::println!("{:?}", v);
-            }
-            (v,) => {
-                ::std::println!("{}", v);
-            }
-        }
+        ::std::println!("{:?}", $arg);
     };
     ($arg1:expr, $($args:expr),+) => {
-        match (&$arg1,) {
-            (v,) if ::std::any::type_name_of_val(v).contains("Vec") ||
-                    ::std::any::type_name_of_val(v).contains("[") => {
-                ::std::print!("{:?}", v);
-            }
-            (v,) => {
-                ::std::print!("{}", v);
-            }
-        }
+        ::std::print!("{:?}", $arg1);
         $(
-            match (&$args,) {
-                (v,) if ::std::any::type_name_of_val(v).contains("Vec") ||
-                        ::std::any::type_name_of_val(v).contains("[") => {
-                    ::std::print!(" {:?}", v);
-                }
-                (v,) => {
-                    ::std::print!(" {}", v);
-                }
-            }
+            ::std::print!(" {:?}", $args);
         )+
         ::std::println!();
     };
