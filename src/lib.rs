@@ -15,17 +15,17 @@ pub fn input(prompt: &str) -> String {
 #[macro_export]
 macro_rules! print {
     () => {
-        println!();
+        ::std::println!();
     };
     ($arg:expr) => {
-        println!("{}", $arg);
+        ::std::println!("{}", $arg);
     };
     ($arg1:expr, $($args:expr),+) => {
-        print!("{}", $arg1);
+        ::std::print!("{}", $arg1);
         $(
-            print!(" {}", $args);
+            ::std::print!(" {}", $args);
         )+
-        println!();
+        ::std::println!();
     };
 }
 
