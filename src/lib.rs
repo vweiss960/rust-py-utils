@@ -11,13 +11,22 @@ pub fn input(prompt: &str) -> String {
 }
 
 
-/// Python-like print with multiple args
-pub fn print(args: &[&dyn std::fmt::Display]) {
-    for (i, arg) in args.iter().enumerate() {
-        if i > 0 { print!(" "); }
-        print!("{}", arg);
-    }
-    println!();
+/// Python-like print macro for multiple arguments
+#[macro_export]
+macro_rules! print {
+    () => {
+        println!();
+    };
+    ($arg:expr) => {
+        println!("{}", $arg);
+    };
+    ($arg1:expr, $($args:expr),+) => {
+        print!("{}", $arg1);
+        $(
+            print!(" {}", $args);
+        )+
+        println!();
+    };
 }
 
 /// Trait for Python-like split method
